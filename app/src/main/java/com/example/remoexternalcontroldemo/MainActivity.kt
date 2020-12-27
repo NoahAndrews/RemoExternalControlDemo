@@ -16,7 +16,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener() {
             val intent = Intent("tv.remo.android.controller.action.REQUEST_REMO_STREAM_START")
-            intent.putExtra("apiKey", apiKey)
+            intent.putExtra("ApiKey", apiKey)
+            intent.putExtra("EnableCamera", true)
+            intent.putExtra("CameraDeviceId", 0)
 
             startActivityForResult(intent, 0)
         }
