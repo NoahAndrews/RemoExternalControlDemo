@@ -1,8 +1,10 @@
 package com.example.remoexternalcontroldemo
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.remoexternalcontroldemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -28,5 +30,16 @@ class MainActivity : AppCompatActivity() {
             intent.`package` = "tv.remo.android.controller"
             sendBroadcast(intent)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        val toastMessage = if (resultCode == Activity.RESULT_CANCELED) {
+            "The stream was not started"
+        } else {
+            "The stream was started"
+        }
+        Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
     }
 }
