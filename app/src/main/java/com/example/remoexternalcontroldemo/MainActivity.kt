@@ -1,6 +1,7 @@
 package com.example.remoexternalcontroldemo
 
 import android.app.Activity
+import android.content.ComponentName
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,9 +27,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.stopButton.setOnClickListener() {
-            val intent = Intent("org.btelman.controlsdk.request.stop")
-            intent.`package` = "tv.remo.android.controller"
-            sendBroadcast(intent)
+            val stopIntent = Intent("org.btelman.controlsdk.request.stop")
+            stopIntent.`package` = "tv.remo.android.controller"
+            sendBroadcast(stopIntent)
+        }
+
+        binding.sendButton.setOnClickListener() {
+            val chatIntent = Intent("tv.remo.android.controller.sdk.chat.send")
+            chatIntent.putExtra("message", binding.editTextMessage.text.toString())
+            sendBroadcast(chatIntent)
         }
     }
 
